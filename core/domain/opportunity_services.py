@@ -221,10 +221,6 @@ def create_exp_opportunity_summary(
     story_node = story.story_contents.get_node_with_corresponding_exp_id(
         exploration.id)
 
-    # TODO(#7376): Once the voiceover application functionality is
-    # implemented change this method such that it also populates the
-    # language_codes_with_assigned_voice_artists with the required data.
-
     exploration_opportunity_summary = (
         opportunity_domain.ExplorationOpportunitySummary(
             exploration.id, topic.id, topic.name, story.id, story.title,
