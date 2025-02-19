@@ -140,10 +140,6 @@ def _construct_new_opportunity_summary_models(
             incomplete_translation_language_codes=(
                 opportunity_summary.incomplete_translation_language_codes),
             translation_counts=opportunity_summary.translation_counts,
-            language_codes_needing_voice_artists=(
-                opportunity_summary.language_codes_needing_voice_artists),
-            language_codes_with_assigned_voice_artists=(
-                opportunity_summary.language_codes_with_assigned_voice_artists)
         )
 
         exploration_opportunity_summary_model_list.append(model)
@@ -200,8 +196,7 @@ def create_exp_opportunity_summary(
         translation_services.get_languages_with_complete_translation(
             exploration))
     # TODO(#13912): Revisit voiceover language logic.
-    language_codes_needing_voice_artists = set(
-        complete_translation_language_list)
+    language_codes_needing_voice_artists = set()
     incomplete_translation_language_codes = (
         _compute_exploration_incomplete_translation_languages(
             complete_translation_language_list))
@@ -211,7 +206,6 @@ def create_exp_opportunity_summary(
         incomplete_translation_language_codes.remove(exploration.language_code)
         # Add exploration language to voiceover required languages list as an
         # exploration can be voiceovered in its own language.
-        language_codes_needing_voice_artists.add(exploration.language_code)
 
     content_count = exploration.get_content_count()
     translation_counts = translation_services.get_translation_counts(
@@ -226,8 +220,7 @@ def create_exp_opportunity_summary(
             exploration.id, topic.id, topic.name, story.id, story.title,
             story_node.title, content_count,
             incomplete_translation_language_codes,
-            translation_counts, list(language_codes_needing_voice_artists), [],
-            {}))
+            translation_counts, [], [], {}))
 
     return exploration_opportunity_summary
 
