@@ -106,7 +106,7 @@ def get_exploration_opportunity_summary_from_model(
         model.story_title, model.chapter_title, model.content_count,
         new_incomplete_translation_language_codes, model.translation_counts,
         model.language_codes_with_assigned_voice_artists,
-        {}, False)
+        [], {})
 
 
 def _construct_new_opportunity_summary_models(
